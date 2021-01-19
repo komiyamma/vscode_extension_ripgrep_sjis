@@ -1,0 +1,2 @@
+# vscode_ripgrep_sjis_extension
+Visual Studio Code用のextension化準備
