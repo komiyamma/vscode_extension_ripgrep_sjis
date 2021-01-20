@@ -3,7 +3,7 @@
   "name": "rg-sjis",
   "displayName": "rg-sjis",
   "description": "Ripgrep with Shift-JIS",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "engines": {
     "vscode": "^1.52.0"
   },

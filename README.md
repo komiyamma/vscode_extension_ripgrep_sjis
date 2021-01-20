@@ -41,6 +41,10 @@ Problems occur when launching multiple Visual Studio Codes.
 「rg_sjis.exe という実行ファイル」がありますが、この実行ファイルのソースリポジトリは「[vscode_ripgrep_sjis](https://github.com/komiyamma/vscode_ripgrep_sjis) 」となります。
 
 
+### 0.2.4
+
+デバッグ目的のダイアログが表示されていたため、非表示に
+
 ### 0.2.3
 
 A draft version.  
