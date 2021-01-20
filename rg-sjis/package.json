@@ -2,8 +2,8 @@
   "publisher": "komiyamma",
   "name": "rg-sjis",
   "displayName": "rg-sjis",
-  "description": "ripgrep sjis",
-  "version": "0.0.2",
+  "description": "Ripgrep with Shift-JIS",
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.52.0"
   },
@@ -15,12 +15,6 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "rg-sjis.helloWorld",
-        "title": "Hello World"
-      }
-    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
