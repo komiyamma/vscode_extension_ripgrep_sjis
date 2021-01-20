@@ -33,6 +33,10 @@ Because it judges that "the character string to be searched does not exist if th
 Problems occur when launching multiple Visual Studio Codes.  
 (Visual Studio Codeを複数起動した後、１つを閉じるとsjisを検索できない)
 
+## Related repositories
+「rg_sjis.exe という実行ファイル」がありますが、この実行ファイルのソースリポジトリは「[vscode_ripgrep_sjis](https://github.com/komiyamma/vscode_ripgrep_sjis) 」となります。
+
+
 ### 0.2.3
 
 A draft version.  
