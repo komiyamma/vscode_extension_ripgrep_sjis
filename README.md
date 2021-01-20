@@ -13,9 +13,20 @@ Visual Studio Code で grep すると、utf8とsjisが混じったファイル�
 
 ## Requirements
 
-- Windows system. I think it's about Win7 or later. Maybe.  
-(Windows系。Win7以降くらいじゃないかな。多分。)
-- .NET Framework 4.5.2 and above.
+1 Windows system. I think it's about Win7 or later. Maybe.  
+(Windows系。Win7以降くらいじゃないかな。多分。)  
+2 .NET Framework 4.5.2 and above.
+
+# Remarks
+In Visual Studio Code, select "File"-> "User Settings"-> "Settings".  
+It is recommended to enter "guess" in the search field and check "Check" in "Auto Guess Encoding".  
+The recommended reason is that if you jump to the file with "wrong encoding" from the grep search result, Visual Studio Code will  
+Because it judges that "the character string to be searched does not exist if the target file is the latest state" and deletes it from the candidates.
+
+(Visual Studio Code にて「ファイル」→「ユーザー設定」→「設定」で、  
+検索欄に「guess」と入れて「Auto Guess Encoding」に「チェック」を入れることを推奨。  
+推奨理由としては、grep 検索結果から「間違えたエンコード」で該当のファイルへとジャンプした場合、Visual Studio Code は  
+「対象のファイルは最新状態だと検索対象の文字列は存在しない」と判断して候補から消してしまうため。)
 
 ## Known Issues
 
