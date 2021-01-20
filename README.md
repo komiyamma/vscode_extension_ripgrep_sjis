@@ -1,7 +1,10 @@
 # rg-sjis
 
-[![rg_sjis v0.2.4](https://img.shields.io/badge/rg_sjis-v0.2.4-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
+[![rg_sjis v0.2.5](https://img.shields.io/badge/rg_sjis-v0.2.5-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+![Windows Only](https://img.shields.io/badge/Windows-Only-6479ff.svg)
+![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
+
 
 This is the grep to hit not only UTF8 but also Japanese SJIS(cp932).
 When grep is done with Visual Studio Code, sjis cannot be detected if the files are a mixture of utf8 and sjis.   
@@ -40,6 +43,9 @@ Problems occur when launching multiple Visual Studio Codes.
 ## Related repositories
 「rg_sjis.exe という実行ファイル」がありますが、この実行ファイルのソースリポジトリは「[vscode_ripgrep_sjis](https://github.com/komiyamma/vscode_ripgrep_sjis) 」となります。
 
+### 0.2.5
+
+Visual Studio Code にパスが通っていなくても動作するように修正
 
 ### 0.2.4
 
