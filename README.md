@@ -7,9 +7,9 @@ This is the grep to hit not only UTF8 but also Japanese SJIS(cp932).
 When grep is done with Visual Studio Code, sjis cannot be detected if the files are a mixture of utf8 and sjis.   
 This extension is made detectable.
 
-Visual Studio Code の Grep で SJIS も ヒットするように。  
-Visual Studio Code で grep すると、utf8とsjisが混じったファイル群だと、sjis が検知できない。  
-そこで検知できるようにしたもの。
+(Visual Studio Code の Grep で SJIS も ヒットするように。  
+ Visual Studio Code で grep すると、utf8とsjisが混じったファイル群だと、sjis が検知できない。  
+ そこで検知できるようにしたもの。)
 
 ## Requirements
 
@@ -27,6 +27,10 @@ Because it judges that "the character string to be searched does not exist if th
 検索欄に「guess」と入れて「Auto Guess Encoding」に「チェック」を入れることを推奨。  
 推奨理由としては、grep 検索結果から「間違えたエンコード」で該当のファイルへとジャンプした場合、Visual Studio Code は  
 「対象のファイルは最新状態だと検索対象の文字列は存在しない」と判断して候補から消してしまうため。)
+
+# Usage
+Just install the extension and it will be available.
+(拡張機能をインストールするだけで利用可能となります)
 
 ## Known Issues
 
