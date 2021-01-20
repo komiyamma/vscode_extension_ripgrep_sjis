@@ -1,7 +1,7 @@
 # rg-sjis
 
 [![rg_sjis v0.2.3](https://img.shields.io/badge/rg_sjis-v0.2.3-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 This is the grep to hit not only UTF8 but also Japanese SJIS(cp932).
 When grep is done with Visual Studio Code, sjis cannot be detected if the files are a mixture of utf8 and sjis.   

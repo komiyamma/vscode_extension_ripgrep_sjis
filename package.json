@@ -13,6 +13,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "icon": "resources/icons/logo.png",
   "main": "./dist/extension.js",
   "contributes": {
   },
