@@ -16,6 +16,7 @@
   "main": "./dist/extension.js",
   "contributes": {
   },
+  "repository": { "type": "git", "url": "https://github.com/komiyamma/vscode_ripgrep_sjis_extension.git" },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack --config ./build/node-extension.webpack.config.js",
