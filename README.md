@@ -1,38 +1,44 @@
 # rg-sjis
 
-[![rg_sjis v0.2.7](https://img.shields.io/badge/rg_sjis-v0.2.7-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
+[![rg_sjis v0.2.8](https://img.shields.io/badge/rg_sjis-v0.2.8-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Windows 7,8,10](https://img.shields.io/badge/Windows-7,8,10-6479ff.svg)
 ![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
 
-Visual Studio Code の Grep で SJIS も ヒットするように。  
-Visual Studio Code で grep すると、utf8とsjisが混じったファイル群だと、sjis が検知できない。  
-そこで検知できるようにしたもの。
+この拡張機能は、Visual Studio Codeで「ファイル検索(=Grep)」をした際に、  
+ファイルの「文字エンコーディング」が規定の「UTF8」のだけではなく「Shift-JIS (CP932)」も  
+検索ヒットするように拡張します。
 
-## Requirements
+## 動作環境
 1. MS-Windows  
 1. .NET Framework 4.5.2 以上
 
-## Remarks
+## 備考
 
-Visual Studio Code にて「ファイル」→「ユーザー設定」→「設定」で、  
-検索欄に「guess」と入れて「Auto Guess Encoding」に「チェック」を入れることを推奨。  
-推奨理由としては、grep 検索結果から「間違えたエンコード」で該当のファイルへとジャンプした場合、Visual Studio Code は  
-「対象のファイルは最新状態だと検索対象の文字列は存在しない」と判断して候補から消してしまうため。
+Visual Studio Code のメニュー「ファイル」→「ユーザー設定」→「設定」で、  
+検索欄に「guess」と入れて「Auto Guess Encoding」に「チェック」を入れることを推奨します。  
+推奨理由としては、Grep 検索結果から「間違えたエンコード」で該当のファイルへとジャンプした際、  
+Visual Studio Code は「対象のファイルは最新状態では検索対象の文字列は存在しない」と判断して候補から消してしまうためです。
 
-## Usage
+## 使い方
 拡張機能をインストールするだけで利用可能となります。
 
-## Known Issues
-Visual Studio Codeを複数起動した後、そのうち１つを閉じるとsjisを検索できなくなります。
+## 既知の不具合
+Visual Studio Codeを複数起動した後、そのうち１つを閉じると一時的にShift-JISが検索ヒットしなくなります。  
+全てのVisual Studio Codeを閉じた後、再度Visual Studio Codeを起動すると機能するようになります。
 
-## Market Place
-[rg-sjis](https://marketplace.visualstudio.com/items?itemName=komiyamma.rg-sjis)
+## マーケットプレイス
+[rg-sjis](https://marketplace.visualstudio.com/items?itemName=komiyamma.rg-sjis) で公開されています。
 
-## Related repositories
-「rg_sjis.exe という実行ファイル」がありますが、この実行ファイルのソースリポジトリは「[vscode_ripgrep_sjis](https://github.com/komiyamma/vscode_ripgrep_sjis)」となります。
+## 関連ファイル
+「rg_sjis.exe」という実行ファイルがありますが、  
+この実行ファイルのソースリポジトリは「[vscode_ripgrep_sjis](https://github.com/komiyamma/vscode_ripgrep_sjis)」で別途公開されています。
 
 ## Change Log
+
+### 0.2.8
+
+説明文の更新。ソースの整理。
 
 ### 0.2.7
 
