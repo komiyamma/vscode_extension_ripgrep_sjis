@@ -30,10 +30,6 @@ Visual Studio Codeを複数起動した後、そのうち１つを閉じると�
 ## マーケットプレイス
 [rg-sjis](https://marketplace.visualstudio.com/items?itemName=komiyamma.rg-sjis) で公開されています。
 
-## 関連ファイル
-「rg_sjis.exe」という実行ファイルがありますが、  
-この実行ファイルのソースリポジトリは「[vscode_ripgrep_sjis](https://github.com/komiyamma/vscode_ripgrep_sjis)」で別途公開されています。
-
 ## Change Log
 
 ### 0.2.8
