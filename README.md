@@ -1,8 +1,8 @@
 # rg-sjis
 
-[![rg_sjis v0.2.8](https://img.shields.io/badge/rg_sjis-v0.2.8-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
+[![rg_sjis v0.2.9](https://img.shields.io/badge/rg_sjis-v0.2.9-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-![Windows 7,8,10](https://img.shields.io/badge/Windows-7,8,10-6479ff.svg)
+![Windows 7,8,10](https://img.shields.io/badge/Windows-7,8,10-6479ff.svg?logo=windows&logoColor=white)
 ![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
 
 この拡張機能は、Visual Studio Codeで「ファイル検索(=Grep)」をした際に、  
@@ -31,6 +31,10 @@ Visual Studio Codeを複数起動した後、そのうち１つを閉じると�
 [rg-sjis](https://marketplace.visualstudio.com/items?itemName=komiyamma.rg-sjis) で公開されています。
 
 ## Change Log
+
+### 0.2.9
+
+まれにvscodeの検索機能が起動しなおしても以降全く機能しなくなってしまう不具合を修正。
 
 ### 0.2.8
 

@@ -108,12 +108,15 @@ For more information try --help
                     string rgUTF8FullPath = rgFullDir + @"\rg_utf8.exe";
                     string myProgramFullPath = Assembly.GetExecutingAssembly().Location;
                     FileInfo fiSjis = new FileInfo(myProgramFullPath);
-                    if (fiRg.Length != fiSjis.Length)
+
+                    // 両方ともこのプログラム自身と同じであるならば、何もしない。すでにラッパーをプラグインフォルダからラッパーフォルダへとコピー済み
+                    // vscodeフォルダにあるのがオリジナルであるならば...
+                    if (fiRg.Length != fiSjis.Length && fiRg.Length > 1024000)
                     {
 
                         try
                         {
-                            File.Move(rgFullPath, rgUTF8FullPath);
+                            File.Copy(rgFullPath, rgUTF8FullPath, true);
                         }
                         catch (Exception e)
                         {
@@ -130,6 +133,17 @@ For more information try --help
                         catch (Exception e)
                         {
 
+                        }
+                    }
+
+                    // プログラムは異なるのに、rg.exeのサイズは小さい
+                    else if (fiRg.Length != fiSjis.Length && fiRg.Length < 1024000)
+                    {
+                        // rg_utf8の存在があるならば...
+                        if (File.Exists(rgUTF8FullPath))
+                        {
+                            File.Copy(myProgramFullPath, rgFullPath, true); // 上書き保存
+                            Console.WriteLine("RgSJISInstallSuccess");
                         }
                     }
                     // 同じファイルであるため、コピー処理を停止。

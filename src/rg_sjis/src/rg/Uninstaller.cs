@@ -103,7 +103,7 @@ For more information try --help
             if (File.Exists(line))
             {
                 string basePath = Path.GetDirectoryName(line);
-                string relativePath = @"..\resources\app\node_modules.asar.unpacked\vscode-ripgrep\bin\rg.exe";
+                string relativePath = @"..\resources\app\node_modules.asar.unpacked\vscode-ripgrep\bin\rg.exe"; // 元々のRipgrepのパス
                 FileInfo fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
                 string rgFullPath = fiRg.FullName;
 
@@ -112,19 +112,21 @@ For more information try --help
                 {
                     string rgFullDir = Path.GetDirectoryName(rgFullPath);
                     string rgUTF8FullPath = rgFullDir + @"\rg_utf8.exe";
+                    long rgFileSize = fiRg.Length;
 
-                    // utf8版とsjis版の両方がある
-                    if (File.Exists(rgUTF8FullPath) && File.Exists(rgFullPath))
+                    // utf8版とsjis版の両方があり、rg.exeが、ラッパーであるならば
+                    if (File.Exists(rgUTF8FullPath) && File.Exists(rgFullPath) && rgFileSize < 1024000)
                     {
 
                         try
                         {
+                            // rg_utf8.exe を rg.exeとして上書き
                             File.Copy(rgUTF8FullPath, rgFullPath, true); // 上書き保存
 
                             // 成功した場合だけ削除
                             try
                             {
-                                File.Delete(rgUTF8FullPath); // 削除
+                                // File.Delete(rgUTF8FullPath); // 残しておいても弊害がないので削除しないこととした。
                                 Console.WriteLine("RgSJISUninstallSuccess");
                             }
                             catch (Exception e)
