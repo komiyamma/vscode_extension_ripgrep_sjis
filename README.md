@@ -1,6 +1,6 @@
 # rg-sjis
 
-[![rg_sjis v0.3.0](https://img.shields.io/badge/rg_sjis-v0.3.0-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
+[![rg_sjis v0.3.1](https://img.shields.io/badge/rg_sjis-v0.3.1-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Windows 7,8,10](https://img.shields.io/badge/Windows-7,8,10-6479ff.svg?logo=windows&logoColor=white)
 ![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
@@ -32,7 +32,7 @@ Visual Studio Codeを複数起動した後、そのうち１つを閉じると�
 
 ## Change Log
 
-### 0.3.0
+### 0.3.1
 
 アイコンの変更。
 
