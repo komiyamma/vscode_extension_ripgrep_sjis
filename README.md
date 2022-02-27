@@ -2,7 +2,7 @@
 
 [![rg_sjis v0.3.2](https://img.shields.io/badge/rg_sjis-v0.3.2-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-![Windows 7,8,10](https://img.shields.io/badge/Windows-7,8,10-6479ff.svg?logo=windows&logoColor=white)
+![Windows 7,8,10,11](https://img.shields.io/badge/Windows-7,8,10,11-6479ff.svg?logo=windows&logoColor=white)
 ![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
 
 この拡張機能は、Visual Studio Codeで「ファイル検索(=Grep)」をした際に、  
