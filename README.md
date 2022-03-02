@@ -2,12 +2,12 @@
 
 [![rg_sjis v0.3.2](https://img.shields.io/badge/rg_sjis-v0.3.2-6479ff.svg)](https://github.com/komiyamma/vscode_ripgrep_sjis_extension/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-![Windows 7,8,10,11](https://img.shields.io/badge/Windows-7,8,10,11-6479ff.svg?logo=windows&logoColor=white)
+![Windows 7|8|10|11](https://img.shields.io/badge/Windows-7_|_8_|_8.1_|_10_|_11-6479ff.svg?logo=windows&logoColor=white)
 ![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
 
 この拡張機能は、Visual Studio Codeで「ファイル検索(=Grep)」をした際に、  
-ファイルの「文字エンコーディング」が規定の「UTF8」のだけではなく「Shift-JIS (CP932)」も  
-検索ヒットするように拡張します。
+ファイルの「文字エンコーディング」が規定の「UTF8」のファイルのみならず、  
+「Shift-JIS (CP932)」であっても検索ヒットするように拡張します。
 
 ## 動作環境
 1. MS-Windows  
