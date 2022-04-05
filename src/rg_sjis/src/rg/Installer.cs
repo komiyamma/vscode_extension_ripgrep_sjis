@@ -101,6 +101,13 @@ For more information try --help
                 FileInfo fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
                 string rgFullPath = fiRg.FullName;
 
+                if (!File.Exists(rgFullPath))
+                {
+                    relativePath = @"..\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin\rg.exe"; // 元々のRipgrepのパス v1.66以降？
+                    fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
+                    rgFullPath = fiRg.FullName;
+                }
+
                 // rg.exeがvscodeの所定の場所に存在するのか。
                 if (File.Exists(rgFullPath))
                 {
