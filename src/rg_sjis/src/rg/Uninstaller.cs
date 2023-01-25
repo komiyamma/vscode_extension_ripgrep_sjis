@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2023 Akitsugu Komiyama
  * under the MIT License
  */
 
@@ -25,6 +25,12 @@ namespace RipGrep
 
                 // int count = JidgeVisualStudioMultiple.GetVisualStudioCodeLaunchCount(m_vscode_path);
                 // System.Diagnostics.Trace.WriteLine(count);
+
+                if (m_vscode_path != "")
+                {
+                    proc_OutputDataReceived(null, null);
+                    return;
+                }
 
                 // VSCodeが複数起動されていない場合のみアンインストールを行う
                 if (true /*count <= 1*/ )
@@ -95,11 +101,16 @@ For more information try --help
 
         private static void proc_OutputDataReceived(object sender, DataReceivedEventArgs ev)
         {
-            string line = ev.Data;
+            string line = "";
             if (m_vscode_path != "")
             {
                 line = Path.GetDirectoryName(m_vscode_path) + "/bin/code.cmd";
             }
+            else
+            {
+                line = ev.Data;
+            }
+
             if (File.Exists(line))
             {
                 string basePath = Path.GetDirectoryName(line);
@@ -124,7 +135,6 @@ For more information try --help
                     // utf8版とsjis版の両方があり、rg.exeが、ラッパーであるならば
                     if (File.Exists(rgUTF8FullPath) && File.Exists(rgFullPath) && rgFileSize < 1024000)
                     {
-
                         try
                         {
                             // rg_utf8.exe を rg.exeとして上書き

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2021 Akitsugu Komiyama
+ * Copyright (C) 2021-2023 Akitsugu Komiyama
  * under the MIT License
  */
 
@@ -16,13 +16,19 @@ namespace RipGrep
     internal class Installer
     {
         static string m_vscode_path = "";
-        public static void Install(string vscode_path="")
+        public static void Install(string vscode_path = "")
         {
             m_vscode_path = vscode_path;
 
             try
             {
                 RgHelpConsoleOutput();
+
+                if (m_vscode_path != "")
+                {
+                    proc_OutputDataReceived(null, null);
+                    return;
+                }
 
                 Process process = new Process();
 
@@ -89,10 +95,14 @@ For more information try --help
 
         private static void proc_OutputDataReceived(object sender, DataReceivedEventArgs ev)
         {
-            string line = ev.Data;
+            string line = "";
             if (m_vscode_path != "")
             {
                 line = Path.GetDirectoryName(m_vscode_path) + "/bin/code.cmd";
+            }
+            else
+            {
+                line = ev.Data;
             }
             if (File.Exists(line))
             {
