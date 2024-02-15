@@ -4,7 +4,7 @@ let path = require('path');
 let process = require('process');
 
 export function activate(context: vscode.ExtensionContext) {
-	var command = path.dirname(__filename) +`/rg_sjis.exe --mode-install "${process.execPath}"`;
+	let command = path.dirname(__filename) +`/rg_sjis.exe --mode-install "${process.execPath}"`;
 	exec(command, function(error:any, stdout:any, stderr:any) {
 		// シェル上でコマンドを実行できなかった場合のエラー処理
 		if (error !== null) {
@@ -17,12 +17,12 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-	var command = path.dirname(__filename) + `/rg_sjis.exe --mode-uninstall "${process.execPath}"`;
+	let command = path.dirname(__filename) + `/rg_sjis.exe --mode-uninstall "${process.execPath}"`;
 	exec(command, function(error:any, stdout:any, stderr:any) {
 		// シェル上でコマンドを実行できなかった場合のエラー処理
 		if (error !== null) {
-		  console.log('exec error: ' + error);
-		  return;
+		console.log('exec error: ' + error);
+		return;
 		}
 	});
 }
