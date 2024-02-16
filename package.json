@@ -3,7 +3,7 @@
   "name": "rg-sjis",
   "displayName": "rg-sjis",
   "description": "Ripgrep with Shift-JIS",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -37,7 +37,7 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "vscode:uninstall": "node dist/extensionUninstall.js",
+    "vscode:uninstall": "node ./dist/extensionUninstall.js",
     "test": "vscode-test"
   },
   "devDependencies": {

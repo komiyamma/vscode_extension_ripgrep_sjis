@@ -1,5 +1,21 @@
-let exec = require('child_process').exec;
-let path = require('path');
-let process = require('process');
+const fs = require('fs');
 
-let command = path.dirname(__filename) + `/rg_sjis.exe --mode-uninstall "${process.execPath}"`;
+try {
+	var rg_dir = require("./rg_sjis.json");
+    var dir = rg_dir.Path;
+
+    const srcPath = dir + '/rg_utf8.exe';
+    const dstPath = dir + '/rg.exe';
+    
+	// ファイルを上書きコピーする
+	fs.copyFile(srcPath, dstPath, (err) => {
+	  if (err) {
+	    console.error(err);
+	    return;
+	  }
+
+	  console.log('ファイルを上書きコピーしました');
+	});
+} catch(e) {
+    console.log("error" + e);
+}

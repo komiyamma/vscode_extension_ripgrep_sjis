@@ -11,3 +11,10 @@ G:\repogitory\vscode_ripgrep_sjis\src\rg\obj\Debug\rg.csprojAssemblyReference.ca
 G:\repogitory\vscode_ripgrep_sjis\src\rg\obj\Debug\rg.csproj.CoreCompileInputs.cache
 G:\repogitory\vscode_ripgrep_sjis\src\rg\obj\Debug\rg_sjis.exe
 G:\repogitory\vscode_ripgrep_sjis\src\rg\obj\Debug\rg_sjis.pdb
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\bin\Debug\rg_sjis.exe.config
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\bin\Debug\rg_sjis.exe
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\bin\Debug\rg_sjis.pdb
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\obj\Debug\rg.csproj.AssemblyReference.cache
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\obj\Debug\rg.csproj.CoreCompileInputs.cache
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\obj\Debug\rg_sjis.exe
+G:\repogitory\vscode_ripgrep_sjis_extension\src\rg_sjis\src\rg\obj\Debug\rg_sjis.pdb

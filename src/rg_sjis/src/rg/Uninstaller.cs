@@ -4,9 +4,11 @@
  */
 
 
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 
@@ -25,6 +27,25 @@ namespace RipGrep
 
                 // int count = JidgeVisualStudioMultiple.GetVisualStudioCodeLaunchCount(m_vscode_path);
                 // System.Diagnostics.Trace.WriteLine(count);
+
+                /*
+                try
+                {
+                    string this_program_dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    string vscodepath_file = this_program_dir + "\\rg_sjis.json";
+                    // VSCodeパスファイルがあるなら、Installメソッドが実行された証拠なので、ここでUninstallはせず、
+                    // package.jsonのscriptsにあるvscode:uninstall のフック関数で対処するため、ここでは何もしない
+                    System.Diagnostics.Trace.WriteLine(vscodepath_file + "\n");
+                    if (File.Exists(vscodepath_file))
+                    {
+                        return;
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+                */
 
                 if (m_vscode_path != "")
                 {

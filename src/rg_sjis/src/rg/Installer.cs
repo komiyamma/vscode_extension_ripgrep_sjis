@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Text;
 using System.IO;
 using System.Reflection;
+using Newtonsoft.Json;
 
 
 namespace RipGrep
@@ -74,6 +75,25 @@ namespace RipGrep
             }
         }
 
+        private static void SaveVsCodePath(string path)
+        {
+            try
+            {
+                var this_program_dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+                // 保存するデータを作成する
+                var data = new
+                {
+                    Path = path,
+                };
+
+                // シリアライズして保存する
+                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                File.WriteAllText(this_program_dir + "\\rg_sjis.json", json);
+            } catch(Exception) { }
+        }
+
+
         private static void RgHelpConsoleOutput()
         {
             // 先にデフォルトの出力と同じものを出しておく
@@ -122,6 +142,9 @@ For more information try --help
                 if (File.Exists(rgFullPath))
                 {
                     string rgFullDir = Path.GetDirectoryName(rgFullPath);
+
+                    SaveVsCodePath(rgFullDir);
+
                     string rgUTF8FullPath = rgFullDir + @"\rg_utf8.exe";
                     string myProgramFullPath = Assembly.GetExecutingAssembly().Location;
                     FileInfo fiSjis = new FileInfo(myProgramFullPath);
