@@ -4,25 +4,25 @@ let path = require('path');
 let process = require('process');
 
 export function activate(context: vscode.ExtensionContext) {
-	let command = path.dirname(__filename) +`/rg_sjis.exe --mode-install "${process.execPath}"`;
-	exec(command, function(error:any, stdout:any, stderr:any) {
+	let command = path.dirname(__filename) + `/rg_sjis.exe --mode-install "${process.execPath}"`;
+	exec(command, function (error: any, stdout: any, stderr: any) {
 		// シェル上でコマンドを実行できなかった場合のエラー処理
 		if (error !== null) {
-		  console.log('exec error: ' + error);
-		  return;
+			console.log('exec error: ' + error);
+			return;
 		}
-	  });
-	let disposable = vscode.commands.registerCommand('rg-sjis.Install', () => {});
+	});
+	let disposable = vscode.commands.registerCommand('rg-sjis.Install', () => { });
 	context.subscriptions.push(disposable);
 }
 
 export function deactivate() {
 	let command = path.dirname(__filename) + `/rg_sjis.exe --mode-uninstall "${process.execPath}"`;
-	exec(command, function(error:any, stdout:any, stderr:any) {
+	exec(command, function (error: any, stdout: any, stderr: any) {
 		// シェル上でコマンドを実行できなかった場合のエラー処理
 		if (error !== null) {
-		console.log('exec error: ' + error);
-		return;
+			console.log('exec error: ' + error);
+			return;
 		}
 	});
 }
