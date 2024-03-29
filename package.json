@@ -3,7 +3,7 @@
   "name": "rg-sjis",
   "displayName": "rg-sjis",
   "description": "Ripgrep with Shift-JIS",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -11,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "workspaceContains:/*.*"
   ],
   "icon": "resources/icons/logo.png",
   "keywords": [
