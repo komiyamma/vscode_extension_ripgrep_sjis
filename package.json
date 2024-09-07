@@ -3,7 +3,7 @@
   "name": "rg-sjis",
   "displayName": "rg-sjis",
   "description": "Ripgrep with Shift-JIS",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -25,6 +25,7 @@
   "license": "MIT",
   "main": "./dist/extension.js",
   "contributes": {},
+  "homepage": "https://komiyamma.net/?page=page-vscode-extension-ripgrep-sjis",
   "repository": {
     "type": "git",
     "url": "https://github.com/komiyamma/vscode_ripgrep_sjis_extension.git"
