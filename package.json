@@ -28,7 +28,7 @@
   "homepage": "https://komiyamma.net/?page=page-vscode-extension-ripgrep-sjis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/komiyamma/vscode_ripgrep_sjis_extension.git"
+    "url": "https://github.com/komiyamma/vscode_extension_ripgrep_sjis"
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
