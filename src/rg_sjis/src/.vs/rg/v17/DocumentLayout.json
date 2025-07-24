@@ -3,11 +3,14 @@
   "WorkspaceRootPath": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\installer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|rg||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|g:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\installer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|solutionrelative:rg\\installer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|g:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\uninstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\uninstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|solutionrelative:rg\\uninstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -21,6 +24,9 @@
     {
       "AbsoluteMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\json\\jsonconvert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|solutionrelative:rg\\json\\jsonconvert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{422CA314-5551-4FD4-8FC3-1F3757B8DD02}|rg\\rg.csproj|g:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +36,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "rg",
+              "DocumentMoniker": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\rg.csproj",
+              "RelativeDocumentMoniker": "rg\\rg.csproj",
+              "ToolTip": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\rg.csproj*",
+              "RelativeToolTip": "rg\\rg.csproj*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-24T04:01:17.194Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -42,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Uninstaller.cs",
               "DocumentMoniker": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\Uninstaller.cs",
               "RelativeDocumentMoniker": "rg\\Uninstaller.cs",
@@ -50,12 +68,11 @@
               "RelativeToolTip": "rg\\Uninstaller.cs",
               "ViewState": "AgIAAHcAAAAAAAAAAAAQwJYAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-16T09:01:24.09Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-16T09:01:24.09Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Installer.cs",
               "DocumentMoniker": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\Installer.cs",
               "RelativeDocumentMoniker": "rg\\Installer.cs",
@@ -68,7 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BsonWriter.cs",
               "DocumentMoniker": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\JSON\\Bson\\BsonWriter.cs",
               "RelativeDocumentMoniker": "rg\\JSON\\Bson\\BsonWriter.cs",
@@ -80,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "JsonConvert.cs",
               "DocumentMoniker": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\JSON\\JsonConvert.cs",
               "RelativeDocumentMoniker": "rg\\JSON\\JsonConvert.cs",
@@ -92,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "VisualStudioCodeLaunchCount.cs",
               "DocumentMoniker": "G:\\repogitory\\vscode_extension_ripgrep_sjis\\src\\rg_sjis\\src\\rg\\VisualStudioCodeLaunchCount.cs",
               "RelativeDocumentMoniker": "rg\\VisualStudioCodeLaunchCount.cs",

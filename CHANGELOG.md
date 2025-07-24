@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.10
+
+Visual Studio Code のディレクトリ構造の変更に対応
+
 ## 0.3.8
 
 Readmeの更新忘れを修正
