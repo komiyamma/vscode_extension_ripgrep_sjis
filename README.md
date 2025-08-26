@@ -1,6 +1,6 @@
 # rg-sjis
 
-[![rg_sjis v0.3.10](https://img.shields.io/badge/rg_sjis-v0.3.10-6479ff.svg)](https://github.com/komiyamma/vscode_extension_ripgrep_sjis/releases)
+[![rg_sjis v0.3.11](https://img.shields.io/badge/rg_sjis-v0.3.11-6479ff.svg)](https://github.com/komiyamma/vscode_extension_ripgrep_sjis/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Windows 7|8|10|11](https://img.shields.io/badge/Windows-7_|_8_|_8.1_|_10_|_11-6479ff.svg?logo=windows&logoColor=white)
 ![.NET Framework 4.5.2](https://img.shields.io/badge/.NET_Framework-v4.5.2-6479ff.svg)
@@ -31,6 +31,10 @@ Visual Studio Codeを複数起動した後、そのうち１つを閉じると�
 [rg-sjis](https://marketplace.visualstudio.com/items?itemName=komiyamma.rg-sjis) で公開されています。
 
 ## Change Log
+
+### 0.3.11
+
+C#のソース・ファイルの整理のみ。
 
 ### 0.3.10
 

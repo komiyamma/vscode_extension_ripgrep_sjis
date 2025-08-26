@@ -3,7 +3,6 @@
  * under the MIT License
  */
 
-
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -11,62 +10,48 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 
-
 namespace RipGrep
 {
-    internal class Installer
+    /// <summary>
+    /// Visual Studio Code の rg.exe を SJIS対応版に差し替えるインストーラー。
+    /// </summary>
+    internal static class Installer
     {
-        static string m_vscode_path = "";
+        private static string m_vscode_path = string.Empty;
+
+        /// <summary>
+        /// VSCodeのパスを指定してインストール処理を行う。パス未指定時は自動検出。
+        /// </summary>
+        /// <param name="vscode_path">VSCodeのパス（省略可）</param>
         public static void Install(string vscode_path = "")
         {
             m_vscode_path = vscode_path;
-
             try
             {
                 RgHelpConsoleOutput();
 
-                if (m_vscode_path != "")
+                if (!string.IsNullOrEmpty(m_vscode_path))
                 {
                     proc_OutputDataReceived(null, null);
                     return;
                 }
 
-                Process process = new Process();
-
-                process.StartInfo.FileName = System.Environment.GetEnvironmentVariable("ComSpec");
-                process.StartInfo.Arguments = "/c where code.cmd";
-
-                process.StartInfo.CreateNoWindow = true;
-                process.StartInfo.UseShellExecute = false;
-
-                //イベントハンドラの追加
-                process.StartInfo.RedirectStandardError = true;
-                process.StartInfo.RedirectStandardOutput = true;
-
-                process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
-                process.StartInfo.StandardErrorEncoding = Encoding.UTF8;
-
-                process.ErrorDataReceived += proc_ErrorDataReceived;
-                process.OutputDataReceived += proc_OutputDataReceived;
-
-
-                //起動する
-                process.Start();
-                process.BeginOutputReadLine();
-
-                process.WaitForExit();
-
-                try
+                using (Process process = new Process())
                 {
-                    if (process != null)
-                    {
-                        process.Close();
-                        process.Kill();
-                    }
-                }
-                catch
-                {
+                    process.StartInfo.FileName = Environment.GetEnvironmentVariable("ComSpec");
+                    process.StartInfo.Arguments = "/c where code.cmd";
+                    process.StartInfo.CreateNoWindow = true;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardError = true;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
+                    process.StartInfo.StandardErrorEncoding = Encoding.UTF8;
+                    process.ErrorDataReceived += proc_ErrorDataReceived;
+                    process.OutputDataReceived += proc_OutputDataReceived;
 
+                    process.Start();
+                    process.BeginOutputReadLine();
+                    process.WaitForExit();
                 }
             }
             catch (Exception ex)
@@ -75,28 +60,29 @@ namespace RipGrep
             }
         }
 
+        /// <summary>
+        /// VSCodeのrg.exe設置ディレクトリをJSONで保存する。
+        /// </summary>
         private static void SaveVsCodePath(string path)
         {
             try
             {
                 var this_program_dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-                // 保存するデータを作成する
-                var data = new
-                {
-                    Path = path,
-                };
-
-                // シリアライズして保存する
+                var data = new { Path = path };
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-                File.WriteAllText(this_program_dir + "\\rg_sjis.json", json);
-            } catch(Exception) { }
+                File.WriteAllText(Path.Combine(this_program_dir, "rg_sjis.json"), json);
+            }
+            catch (Exception)
+            {
+                // 保存失敗時は無視
+            }
         }
 
-
+        /// <summary>
+        /// rgのヘルプ出力を模倣したエラーメッセージを表示。
+        /// </summary>
         private static void RgHelpConsoleOutput()
         {
-            // 先にデフォルトの出力と同じものを出しておく
             Console.WriteLine(@"
 error: The following required arguments were not provided:
     <PATTERN>
@@ -113,99 +99,86 @@ For more information try --help
 ");
         }
 
+        /// <summary>
+        /// VSCodeのrg.exeの差し替え・設置処理本体。
+        /// </summary>
         private static void proc_OutputDataReceived(object sender, DataReceivedEventArgs ev)
         {
-            string line = "";
-            if (m_vscode_path != "")
+            string line = string.Empty;
+            if (!string.IsNullOrEmpty(m_vscode_path))
             {
-                line = Path.GetDirectoryName(m_vscode_path) + "/bin/code.cmd";
+                line = Path.Combine(Path.GetDirectoryName(m_vscode_path), "bin", "code.cmd");
             }
             else
             {
-                line = ev.Data;
+                line = ev?.Data;
             }
             if (File.Exists(line))
             {
                 string basePath = Path.GetDirectoryName(line);
-                string relativePath = @"..\resources\app\node_modules.asar.unpacked\vscode-ripgrep\bin\rg.exe";
-                FileInfo fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
-                string rgFullPath = fiRg.FullName;
-
-                if (!File.Exists(rgFullPath))
+                string[] relativePaths =
                 {
-                    relativePath = @"..\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin\rg.exe"; // 元々のRipgrepのパス v1.66以降？
-                    fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
-                    rgFullPath = fiRg.FullName;
-                }
-
-                if (!File.Exists(rgFullPath))
+                    @"..\resources\app\node_modules.asar.unpacked\vscode-ripgrep\bin\rg.exe",
+                    @"..\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin\rg.exe",
+                    @"..\resources\app\node_modules\@vscode\ripgrep\bin\rg.exe"
+                };
+                string rgFullPath = null;
+                FileInfo fiRg = null;
+                foreach (var rel in relativePaths)
                 {
-                    relativePath = @"..\resources\app\node_modules\@vscode\ripgrep\bin\rg.exe"; // 元々のRipgrepのパス v1.66以降？
-                    fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
-                    rgFullPath = fiRg.FullName;
-                }
-
-                // rg.exeがvscodeの所定の場所に存在するのか。
-                if (File.Exists(rgFullPath))
-                {
-                    string rgFullDir = Path.GetDirectoryName(rgFullPath);
-
-                    SaveVsCodePath(rgFullDir);
-
-                    string rgUTF8FullPath = rgFullDir + @"\rg_utf8.exe";
-                    string myProgramFullPath = Assembly.GetExecutingAssembly().Location;
-                    FileInfo fiSjis = new FileInfo(myProgramFullPath);
-
-                    // 両方ともこのプログラム自身と同じであるならば、何もしない。すでにラッパーをプラグインフォルダからラッパーフォルダへとコピー済み
-                    // vscodeフォルダにあるのがオリジナルであるならば...
-                    if (fiRg.Length != fiSjis.Length && fiRg.Length > 1024000)
+                    var candidate = Path.GetFullPath(Path.Combine(basePath, rel));
+                    if (File.Exists(candidate))
                     {
-
-                        try
-                        {
-                            File.Copy(rgFullPath, rgUTF8FullPath, true);
-                        }
-                        catch (Exception e)
-                        {
-
-                        }
-                        try
-                        {
-                            File.Copy(myProgramFullPath, rgFullPath, true); // 上書き保存
-                            if (File.Exists(rgUTF8FullPath))
-                            {
-                                Console.WriteLine("RgSJISInstallSuccess");
-                            }
-                        }
-                        catch (Exception e)
-                        {
-
-                        }
+                        rgFullPath = candidate;
+                        fiRg = new FileInfo(candidate);
+                        break;
                     }
+                }
+                if (rgFullPath == null)
+                    return;
 
-                    // プログラムは異なるのに、rg.exeのサイズは小さい
-                    else if (fiRg.Length != fiSjis.Length && fiRg.Length < 1024000)
+                string rgFullDir = Path.GetDirectoryName(rgFullPath);
+                SaveVsCodePath(rgFullDir);
+
+                string rgUTF8FullPath = Path.Combine(rgFullDir, "rg_utf8.exe");
+                string myProgramFullPath = Assembly.GetExecutingAssembly().Location;
+                FileInfo fiSjis = new FileInfo(myProgramFullPath);
+
+                // オリジナルrg.exeとラッパーのサイズ比較で差し替え判定
+                if (fiRg.Length != fiSjis.Length && fiRg.Length > 1024000)
+                {
+                    try { File.Copy(rgFullPath, rgUTF8FullPath, true); } catch { }
+                    try
                     {
-                        // rg_utf8の存在があるならば...
-                        if (File.Exists(rgUTF8FullPath))
-                        {
-                            File.Copy(myProgramFullPath, rgFullPath, true); // 上書き保存
-                            Console.WriteLine("RgSJISInstallSuccess");
-                        }
-                    }
-                    // 同じファイルであるため、コピー処理を停止。
-                    else
-                    {
+                        File.Copy(myProgramFullPath, rgFullPath, true);
                         if (File.Exists(rgUTF8FullPath))
                         {
                             Console.WriteLine("RgSJISInstallSuccess");
                         }
+                    }
+                    catch { }
+                }
+                else if (fiRg.Length != fiSjis.Length && fiRg.Length < 1024000)
+                {
+                    if (File.Exists(rgUTF8FullPath))
+                    {
+                        File.Copy(myProgramFullPath, rgFullPath, true);
+                        Console.WriteLine("RgSJISInstallSuccess");
+                    }
+                }
+                else
+                {
+                    if (File.Exists(rgUTF8FullPath))
+                    {
+                        Console.WriteLine("RgSJISInstallSuccess");
                     }
                 }
             }
-
         }
 
+        /// <summary>
+        /// 標準エラー出力受信時の処理（標準出力と同じ処理を行う）。
+        /// </summary>
         private static void proc_ErrorDataReceived(object sender, DataReceivedEventArgs ev)
         {
             proc_OutputDataReceived(sender, ev);

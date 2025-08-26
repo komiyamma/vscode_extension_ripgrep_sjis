@@ -3,7 +3,6 @@
  * under the MIT License
  */
 
-
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
@@ -11,13 +10,19 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-
 namespace RipGrep
 {
-    internal class UnInstaller
+    /// <summary>
+    /// Visual Studio Code の rg.exe を元に戻すアンインストーラー。
+    /// </summary>
+    internal static class UnInstaller
     {
-        static string m_vscode_path = "";
+        private static string m_vscode_path = string.Empty;
 
+        /// <summary>
+        /// VSCodeのパスを指定してアンインストール処理を行う。パス未指定時は自動検出。
+        /// </summary>
+        /// <param name="vscode_path">VSCodeのパス（省略可）</param>
         public static void UnInstall(string vscode_path = "")
         {
             m_vscode_path = vscode_path;
@@ -25,74 +30,30 @@ namespace RipGrep
             {
                 RgHelpConsoleOutput();
 
-                // int count = JidgeVisualStudioMultiple.GetVisualStudioCodeLaunchCount(m_vscode_path);
-                // System.Diagnostics.Trace.WriteLine(count);
-
-                /*
-                try
-                {
-                    string this_program_dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    string vscodepath_file = this_program_dir + "\\rg_sjis.json";
-                    // VSCodeパスファイルがあるなら、Installメソッドが実行された証拠なので、ここでUninstallはせず、
-                    // package.jsonのscriptsにあるvscode:uninstall のフック関数で対処するため、ここでは何もしない
-                    System.Diagnostics.Trace.WriteLine(vscodepath_file + "\n");
-                    if (File.Exists(vscodepath_file))
-                    {
-                        return;
-                    }
-                }
-                catch (Exception e)
-                {
-
-                }
-                */
-
-                if (m_vscode_path != "")
+                // VSCodeパスが指定されていれば即アンインストール処理
+                if (!string.IsNullOrEmpty(m_vscode_path))
                 {
                     proc_OutputDataReceived(null, null);
                     return;
                 }
 
-                // VSCodeが複数起動されていない場合のみアンインストールを行う
-                if (true /*count <= 1*/ )
+                // VSCodeが複数起動されていない場合のみアンインストールを行う（現状は常に実行）
+                using (Process process = new Process())
                 {
-                    Process process = new Process();
-
-                    process.StartInfo.FileName = System.Environment.GetEnvironmentVariable("ComSpec");
+                    process.StartInfo.FileName = Environment.GetEnvironmentVariable("ComSpec");
                     process.StartInfo.Arguments = "/c where code.cmd";
-
                     process.StartInfo.CreateNoWindow = true;
                     process.StartInfo.UseShellExecute = false;
-
-                    //イベントハンドラの追加
                     process.StartInfo.RedirectStandardError = true;
                     process.StartInfo.RedirectStandardOutput = true;
-
                     process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
                     process.StartInfo.StandardErrorEncoding = Encoding.UTF8;
-
                     process.ErrorDataReceived += proc_ErrorDataReceived;
                     process.OutputDataReceived += proc_OutputDataReceived;
 
-
-                    //起動する
                     process.Start();
                     process.BeginOutputReadLine();
-
                     process.WaitForExit();
-
-                    try
-                    {
-                        if (process != null)
-                        {
-                            process.Close();
-                            process.Kill();
-                        }
-                    }
-                    catch
-                    {
-
-                    }
                 }
             }
             catch (Exception ex)
@@ -101,9 +62,11 @@ namespace RipGrep
             }
         }
 
+        /// <summary>
+        /// rgのヘルプ出力を模倣したエラーメッセージを表示。
+        /// </summary>
         private static void RgHelpConsoleOutput()
         {
-            // 先にデフォルトの出力と同じものを出しておく
             Console.WriteLine(@"
 error: The following required arguments were not provided:
     <PATTERN>
@@ -120,73 +83,66 @@ For more information try --help
 ");
         }
 
+        /// <summary>
+        /// VSCodeのrg.exeのアンインストール処理本体。
+        /// </summary>
         private static void proc_OutputDataReceived(object sender, DataReceivedEventArgs ev)
         {
-            string line = "";
-            if (m_vscode_path != "")
+            string line = string.Empty;
+            if (!string.IsNullOrEmpty(m_vscode_path))
             {
-                line = Path.GetDirectoryName(m_vscode_path) + "/bin/code.cmd";
+                line = Path.Combine(Path.GetDirectoryName(m_vscode_path), "bin", "code.cmd");
             }
             else
             {
-                line = ev.Data;
+                line = ev?.Data;
             }
 
             if (File.Exists(line))
             {
                 string basePath = Path.GetDirectoryName(line);
-                string relativePath = @"..\resources\app\node_modules.asar.unpacked\vscode-ripgrep\bin\rg.exe"; // 元々のRipgrepのパス
-                FileInfo fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
-                string rgFullPath = fiRg.FullName;
-
-                if (!File.Exists(rgFullPath))
+                string[] relativePaths =
                 {
-                    relativePath = @"..\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin\rg.exe"; // 元々のRipgrepのパス v1.66以降？
-                    fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
-                    rgFullPath = fiRg.FullName;
-                }
-
-                if (!File.Exists(rgFullPath))
+                    @"..\resources\app\node_modules.asar.unpacked\vscode-ripgrep\bin\rg.exe",
+                    @"..\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin\rg.exe",
+                    @"..\resources\app\node_modules\@vscode\ripgrep\bin\rg.exe"
+                };
+                string rgFullPath = null;
+                FileInfo fiRg = null;
+                foreach (var rel in relativePaths)
                 {
-                    relativePath = @"..\resources\app\node_modules\@vscode\ripgrep\bin\rg.exe"; // 元々のRipgrepのパス v1.66以降？
-                    fiRg = new FileInfo(System.IO.Path.Combine(basePath, relativePath));
-                    rgFullPath = fiRg.FullName;
-                }
-
-                // rg.exeがvscodeの所定の場所に存在するのか。
-                if (File.Exists(rgFullPath))
-                {
-                    string rgFullDir = Path.GetDirectoryName(rgFullPath);
-                    string rgUTF8FullPath = rgFullDir + @"\rg_utf8.exe";
-                    long rgFileSize = fiRg.Length;
-
-                    // utf8版とsjis版の両方があり、rg.exeが、ラッパーであるならば
-                    if (File.Exists(rgUTF8FullPath) && File.Exists(rgFullPath) && rgFileSize < 1024000)
+                    var candidate = Path.GetFullPath(Path.Combine(basePath, rel));
+                    if (File.Exists(candidate))
                     {
-                        try
-                        {
-                            // rg_utf8.exe を rg.exeとして上書き
-                            File.Copy(rgUTF8FullPath, rgFullPath, true); // 上書き保存
-
-                            // 成功した場合だけ削除
-                            try
-                            {
-                                // File.Delete(rgUTF8FullPath); // 残しておいても弊害がないので削除しないこととした。
-                                Console.WriteLine("RgSJISUninstallSuccess");
-                            }
-                            catch (Exception e)
-                            {
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                        }
+                        rgFullPath = candidate;
+                        fiRg = new FileInfo(candidate);
+                        break;
                     }
                 }
-            }
+                if (rgFullPath == null)
+                    return;
 
+                string rgFullDir = Path.GetDirectoryName(rgFullPath);
+                string rgUTF8FullPath = Path.Combine(rgFullDir, "rg_utf8.exe");
+                long rgFileSize = fiRg.Length;
+
+                // utf8版とsjis版の両方があり、rg.exeがラッパーであるならば
+                if (File.Exists(rgUTF8FullPath) && File.Exists(rgFullPath) && rgFileSize < 1024000)
+                {
+                    try
+                    {
+                        File.Copy(rgUTF8FullPath, rgFullPath, true);
+                        // File.Delete(rgUTF8FullPath); // 残しておいても弊害がないので削除しない
+                        Console.WriteLine("RgSJISUninstallSuccess");
+                    }
+                    catch { }
+                }
+            }
         }
 
+        /// <summary>
+        /// 標準エラー出力受信時の処理（標準出力と同じ処理を行う）。
+        /// </summary>
         private static void proc_ErrorDataReceived(object sender, DataReceivedEventArgs ev)
         {
             proc_OutputDataReceived(sender, ev);

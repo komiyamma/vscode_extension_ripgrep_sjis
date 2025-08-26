@@ -18,3 +18,8 @@ G:\repogitory\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\bin\Release\rg_sj
 G:\repogitory\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\obj\Release\rg.csproj.AssemblyReference.cache
 G:\repogitory\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\obj\Release\rg.csproj.CoreCompileInputs.cache
 G:\repogitory\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\obj\Release\rg_sjis.exe
+G:\repogitory_vsc\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\obj\Release\rg.csproj.AssemblyReference.cache
+G:\repogitory_vsc\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\obj\Release\rg.csproj.CoreCompileInputs.cache
+G:\repogitory_vsc\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\obj\Release\rg_sjis.exe
+G:\repogitory_vsc\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\bin\Release\rg_sjis.exe.config
+G:\repogitory_vsc\vscode_extension_ripgrep_sjis\src\rg_sjis\src\rg\bin\Release\rg_sjis.exe
